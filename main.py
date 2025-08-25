@@ -51,6 +51,7 @@ def update_todo(todo_id):
 
     return jsonify(todo_to_update), 200
 
+
 @app.route('/api/todos/<int:todo_id>', methods=['DELETE'])
 def delete_todo(todo_id):
     found_todo = [todo for todo in todos if todo["id"] == todo_id]
@@ -66,4 +67,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
