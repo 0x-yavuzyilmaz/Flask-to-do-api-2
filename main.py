@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, abort
 
 app = Flask(__name__)
 
@@ -12,6 +12,14 @@ todos = [
 @app.route('/api/todos')
 def get_all_todos():
     return jsonify(todos)
+
+
+@app.route('/api/todos/<int:todo_id>')
+def get_single_todo(todo_id):
+    found_todo = [todo for todo in todos if todo["id"] == todo_id]
+    if len(found_todo) == 0:
+        abort(404)
+    return jsonify(found_todo[0])
 
 
 @app.route('/')
