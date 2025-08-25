@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, abort
+from flask import Flask, jsonify, abort, request
 
 app = Flask(__name__)
 
@@ -20,6 +20,17 @@ def get_single_todo(todo_id):
     if len(found_todo) == 0:
         abort(404)
     return jsonify(found_todo[0])
+
+
+@app.route('/api/todos', methods=['POST'])
+def create_todo():
+    if not request.json or not 'task' in request.json:
+        abort(400)
+    new_id = todos[-1]['id'] + 1 if todos else 1
+
+    new_todo = {"id": new_id, "task": request.json['task'], 'done': False}
+    todos.append(new_todo)
+    return jsonify(new_todo), 201
 
 
 @app.route('/')
