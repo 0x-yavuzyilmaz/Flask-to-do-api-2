@@ -1,0 +1,40 @@
+### 1. Tüm yapılacakları listele (Başlangıç durumunu görmek için)
+GET http://127.0.0.1:5000/api/todos
+
+### -------------------------------------------
+
+### Örnek POST isteği
+POST http://127.0.0.1:5000/api/todos
+Content-Type: application/json
+
+{
+  "task": "Understand .http files",
+  "done": false
+}
+### 2. ID'si 2 olan todo'yu GÜNCELLE
+PUT http://127.0.0.1:5000/api/todos/2
+Content-Type: application/json
+
+{
+  "task": "Master Update and Delete operations",
+  "done": true
+}
+
+### -------------------------------------------
+
+### Örnek PUT isteği
+PUT http://127.0.0.1:5000/api/todos/3
+Content-Type: application/json
+
+{
+  "task": "Master PUT requests",
+  "done": true
+}
+
+### 3. ID'si 1 olan todo'yu SİL
+DELETE http://127.0.0.1:5000/api/todos/1
+
+### -------------------------------------------
+
+### 4. Son durumu görmek için tüm yapılacakları TEKRAR listele
+GET http://127.0.0.1:5000/api/todos
